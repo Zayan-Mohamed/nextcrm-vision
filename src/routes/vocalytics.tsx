@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout, Card, Badge, Label } from "@/components/Layout";
 import { CALL_LOG, TRANSCRIPT } from "@/lib/data";
 import { Play, FileText, Sparkles } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/vocalytics")({ component: Vocalytics });
 
