@@ -211,11 +211,59 @@ function IntegrationsTab() {
   );
 }
 
+/* Inline SVG flags — render identically on every OS (Windows has no flag emoji). */
+function Flag({ code }: { code: "GB" | "IN" | "LK" }) {
+  const common = { width: 26, height: 18, viewBox: "0 0 36 24" } as const;
+  if (code === "GB") {
+    return (
+      <svg {...common} style={{ borderRadius: 3, flexShrink: 0 }} aria-label="English">
+        <clipPath id="fl-gb"><rect width="36" height="24" rx="3" /></clipPath>
+        <g clipPath="url(#fl-gb)">
+          <rect width="36" height="24" fill="#012169" />
+          <path d="M0,0 36,24 M36,0 0,24" stroke="#fff" strokeWidth="5" />
+          <path d="M0,0 36,24 M36,0 0,24" stroke="#C8102E" strokeWidth="3" />
+          <path d="M18,0 V24 M0,12 H36" stroke="#fff" strokeWidth="8" />
+          <path d="M18,0 V24 M0,12 H36" stroke="#C8102E" strokeWidth="5" />
+        </g>
+      </svg>
+    );
+  }
+  if (code === "IN") {
+    return (
+      <svg {...common} style={{ borderRadius: 3, flexShrink: 0 }} aria-label="India">
+        <clipPath id="fl-in"><rect width="36" height="24" rx="3" /></clipPath>
+        <g clipPath="url(#fl-in)">
+          <rect width="36" height="24" fill="#fff" />
+          <rect width="36" height="8" fill="#FF9933" />
+          <rect y="16" width="36" height="8" fill="#138808" />
+          <circle cx="18" cy="12" r="3.4" fill="none" stroke="#000080" strokeWidth="1" />
+          <circle cx="18" cy="12" r="0.7" fill="#000080" />
+        </g>
+      </svg>
+    );
+  }
+  return (
+    <svg {...common} style={{ borderRadius: 3, flexShrink: 0 }} aria-label="Sri Lanka">
+      <clipPath id="fl-lk"><rect width="36" height="24" rx="3" /></clipPath>
+      <g clipPath="url(#fl-lk)">
+        <rect width="36" height="24" fill="#FFB700" />
+        <rect x="3" y="3" width="5" height="18" fill="#EB7400" />
+        <rect x="8" y="3" width="5" height="18" fill="#00534E" />
+        <rect x="15" y="3" width="18" height="18" rx="1" fill="#8D153A" />
+        <path d="M24 7c2 0 3.4 1.6 3.4 4.5S26 17 24 17s-3.4-2.1-3.4-5S22 7 24 7z" fill="#FFB700" />
+        {[[17.5, 5.5], [30.5, 5.5], [17.5, 18.5], [30.5, 18.5]].map(([cx, cy], i) => (
+          <circle key={i} cx={cx} cy={cy} r="1.3" fill="#FFB700" />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
 function LanguageTab({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
-  const opts: { code: Lang; flag: string; label: string }[] = [
-    { code: "en", flag: "🇬🇧", label: "English" },
-    { code: "ta", flag: "🇮🇳", label: "தமிழ் (Tamil)" },
-    { code: "si", flag: "🇱🇰", label: "සිංහල (Sinhala)" },
+  const opts: { code: Lang; cc: "GB" | "IN" | "LK"; label: string }[] = [
+    { code: "en", cc: "GB", label: "English" },
+    { code: "ta", cc: "IN", label: "தமிழ் (Tamil)" },
+    { code: "si", cc: "LK", label: "සිංහල (Sinhala)" },
   ];
   return (
     <Card>
@@ -228,7 +276,7 @@ function LanguageTab({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void
           <label key={o.code} className="nc-card-hover nc-press flex items-center gap-4 p-4 rounded-lg cursor-pointer"
             style={{ border: "1px solid " + (lang === o.code ? "#6C47FF" : "#E5E7EB"), background: lang === o.code ? "#EEE9FF" : "#fff" }}>
             <input type="radio" checked={lang === o.code} onChange={() => { setLang(o.code); toast(`Language: ${o.label}`); }} className="accent-[#6C47FF]" />
-            <span className="text-[22px]">{o.flag}</span>
+            <Flag code={o.cc} />
             <span className="text-[14px] font-medium">{o.label}</span>
           </label>
         ))}
