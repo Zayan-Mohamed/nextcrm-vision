@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Layout, Card, Badge, ButtonPrimary, ButtonSecondary, Label } from "@/components/Layout";
+import { useState } from "react";
+import { Layout, Card, ButtonPrimary, ButtonSecondary, Label } from "@/components/Layout";
 import { RULES } from "@/lib/data";
 import { Plus, Workflow } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/rules")({ component: Rules });
 
