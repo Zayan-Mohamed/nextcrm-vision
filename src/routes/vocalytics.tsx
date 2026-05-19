@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Layout, Card, Badge, Label, Avatar } from "@/components/Layout";
 import {
   Play, Pause, Sparkles, BarChart3, Bot, Search, ChevronDown,
