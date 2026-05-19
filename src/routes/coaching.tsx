@@ -5,25 +5,27 @@ import {
   Radar, RadarChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, ResponsiveContainer,
 } from "recharts";
 import { CheckCircle2, AlertTriangle, Lightbulb } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/coaching")({ component: Coaching });
 
 function Coaching() {
+  const { t } = useI18n();
   return (
     <Layout title="Coaching AI">
       <Card style={{ padding: 0 }} className="mb-6">
         <div className="px-6 py-4 border-b" style={{ borderColor: "#E5E7EB" }}>
-          <h2 className="text-[16px] font-semibold">Team Performance</h2>
+          <h2 className="text-[16px] font-semibold">{t("Team Performance")}</h2>
         </div>
         <table className="w-full text-[14px]">
           <thead>
             <tr style={{ color: "#6B7280", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              <th className="text-left px-6 py-3">Rep</th>
-              <th className="text-left px-4">Call Score</th>
-              <th className="text-left px-4">Objection Handling</th>
-              <th className="text-left px-4">Empathy</th>
-              <th className="text-left px-4">Talk/Listen</th>
-              <th className="text-left px-4">Improvement Area</th>
+              <th className="text-left px-6 py-3">{t("Rep")}</th>
+              <th className="text-left px-4">{t("Call Score")}</th>
+              <th className="text-left px-4">{t("Objection Handling")}</th>
+              <th className="text-left px-4">{t("Empathy")}</th>
+              <th className="text-left px-4">{t("Talk/Listen")}</th>
+              <th className="text-left px-4">{t("Improvement Area")}</th>
             </tr>
           </thead>
           <tbody>
