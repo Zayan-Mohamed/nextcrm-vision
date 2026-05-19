@@ -9,8 +9,74 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VocalyticsRouteImport } from './routes/vocalytics'
+import { Route as TasksRouteImport } from './routes/tasks'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as RulesRouteImport } from './routes/rules'
+import { Route as PipelineRouteImport } from './routes/pipeline'
+import { Route as MailMindRouteImport } from './routes/mail-mind'
+import { Route as MailAgentRouteImport } from './routes/mail-agent'
+import { Route as LeadsRouteImport } from './routes/leads'
+import { Route as CoachingRouteImport } from './routes/coaching'
+import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as BiRouteImport } from './routes/bi'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VocalyticsRoute = VocalyticsRouteImport.update({
+  id: '/vocalytics',
+  path: '/vocalytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TasksRoute = TasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RulesRoute = RulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PipelineRoute = PipelineRouteImport.update({
+  id: '/pipeline',
+  path: '/pipeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MailMindRoute = MailMindRouteImport.update({
+  id: '/mail-mind',
+  path: '/mail-mind',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MailAgentRoute = MailAgentRouteImport.update({
+  id: '/mail-agent',
+  path: '/mail-agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeadsRoute = LeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachingRoute = CoachingRouteImport.update({
+  id: '/coaching',
+  path: '/coaching',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BiRoute = BiRouteImport.update({
+  id: '/bi',
+  path: '/bi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +85,186 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bi': typeof BiRoute
+  '/calendar': typeof CalendarRoute
+  '/coaching': typeof CoachingRoute
+  '/leads': typeof LeadsRoute
+  '/mail-agent': typeof MailAgentRoute
+  '/mail-mind': typeof MailMindRoute
+  '/pipeline': typeof PipelineRoute
+  '/rules': typeof RulesRoute
+  '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
+  '/vocalytics': typeof VocalyticsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bi': typeof BiRoute
+  '/calendar': typeof CalendarRoute
+  '/coaching': typeof CoachingRoute
+  '/leads': typeof LeadsRoute
+  '/mail-agent': typeof MailAgentRoute
+  '/mail-mind': typeof MailMindRoute
+  '/pipeline': typeof PipelineRoute
+  '/rules': typeof RulesRoute
+  '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
+  '/vocalytics': typeof VocalyticsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bi': typeof BiRoute
+  '/calendar': typeof CalendarRoute
+  '/coaching': typeof CoachingRoute
+  '/leads': typeof LeadsRoute
+  '/mail-agent': typeof MailAgentRoute
+  '/mail-mind': typeof MailMindRoute
+  '/pipeline': typeof PipelineRoute
+  '/rules': typeof RulesRoute
+  '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
+  '/vocalytics': typeof VocalyticsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bi'
+    | '/calendar'
+    | '/coaching'
+    | '/leads'
+    | '/mail-agent'
+    | '/mail-mind'
+    | '/pipeline'
+    | '/rules'
+    | '/settings'
+    | '/tasks'
+    | '/vocalytics'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bi'
+    | '/calendar'
+    | '/coaching'
+    | '/leads'
+    | '/mail-agent'
+    | '/mail-mind'
+    | '/pipeline'
+    | '/rules'
+    | '/settings'
+    | '/tasks'
+    | '/vocalytics'
+  id:
+    | '__root__'
+    | '/'
+    | '/bi'
+    | '/calendar'
+    | '/coaching'
+    | '/leads'
+    | '/mail-agent'
+    | '/mail-mind'
+    | '/pipeline'
+    | '/rules'
+    | '/settings'
+    | '/tasks'
+    | '/vocalytics'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BiRoute: typeof BiRoute
+  CalendarRoute: typeof CalendarRoute
+  CoachingRoute: typeof CoachingRoute
+  LeadsRoute: typeof LeadsRoute
+  MailAgentRoute: typeof MailAgentRoute
+  MailMindRoute: typeof MailMindRoute
+  PipelineRoute: typeof PipelineRoute
+  RulesRoute: typeof RulesRoute
+  SettingsRoute: typeof SettingsRoute
+  TasksRoute: typeof TasksRoute
+  VocalyticsRoute: typeof VocalyticsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vocalytics': {
+      id: '/vocalytics'
+      path: '/vocalytics'
+      fullPath: '/vocalytics'
+      preLoaderRoute: typeof VocalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rules': {
+      id: '/rules'
+      path: '/rules'
+      fullPath: '/rules'
+      preLoaderRoute: typeof RulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pipeline': {
+      id: '/pipeline'
+      path: '/pipeline'
+      fullPath: '/pipeline'
+      preLoaderRoute: typeof PipelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mail-mind': {
+      id: '/mail-mind'
+      path: '/mail-mind'
+      fullPath: '/mail-mind'
+      preLoaderRoute: typeof MailMindRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mail-agent': {
+      id: '/mail-agent'
+      path: '/mail-agent'
+      fullPath: '/mail-agent'
+      preLoaderRoute: typeof MailAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leads': {
+      id: '/leads'
+      path: '/leads'
+      fullPath: '/leads'
+      preLoaderRoute: typeof LeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coaching': {
+      id: '/coaching'
+      path: '/coaching'
+      fullPath: '/coaching'
+      preLoaderRoute: typeof CoachingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bi': {
+      id: '/bi'
+      path: '/bi'
+      fullPath: '/bi'
+      preLoaderRoute: typeof BiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +277,28 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BiRoute: BiRoute,
+  CalendarRoute: CalendarRoute,
+  CoachingRoute: CoachingRoute,
+  LeadsRoute: LeadsRoute,
+  MailAgentRoute: MailAgentRoute,
+  MailMindRoute: MailMindRoute,
+  PipelineRoute: PipelineRoute,
+  RulesRoute: RulesRoute,
+  SettingsRoute: SettingsRoute,
+  TasksRoute: TasksRoute,
+  VocalyticsRoute: VocalyticsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
