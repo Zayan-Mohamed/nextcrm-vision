@@ -1,13 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Layout, Card, Badge, ButtonPrimary, ButtonSecondary, Label } from "@/components/Layout";
+import { useState } from "react";
+import { Layout, Card, ButtonPrimary, ButtonSecondary, Label } from "@/components/Layout";
 import { RULES } from "@/lib/data";
 import { Plus, Workflow } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/rules")({ component: Rules });
 
-function Toggle({ on }: { on: boolean }) {
+function Toggle({ on, onClick }: { on: boolean; onClick: () => void }) {
   return (
-    <div className="w-9 h-5 rounded-full p-0.5 flex items-center cursor-pointer"
+    <div
+      onClick={onClick}
+      className="w-9 h-5 rounded-full p-0.5 flex items-center cursor-pointer transition-all"
       style={{ background: on ? "#6C47FF" : "#E5E7EB", justifyContent: on ? "flex-end" : "flex-start" }}>
       <div className="w-4 h-4 rounded-full bg-white" />
     </div>
@@ -15,34 +19,38 @@ function Toggle({ on }: { on: boolean }) {
 }
 
 function Rules() {
+  const { t } = useI18n();
+  const [rules, setRules] = useState(RULES.map((r) => ({ ...r })));
+  const toggle = (i: number) =>
+    setRules((rs) => rs.map((r, idx) => (idx === i ? { ...r, on: !r.on } : r)));
   return (
     <Layout title="Rules">
       <div className="flex justify-between items-center mb-4">
         <p className="text-[14px]" style={{ color: "#6B7280" }}>
           Automate actions when conditions are met
         </p>
-        <ButtonPrimary><Plus size={14} />Create Rule</ButtonPrimary>
+        <ButtonPrimary><Plus size={14} />{t("Create Rule")}</ButtonPrimary>
       </div>
 
       <Card style={{ padding: 0 }} className="mb-6">
         <table className="w-full text-[14px]">
           <thead>
             <tr style={{ color: "#6B7280", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              <th className="text-left px-6 py-3">Trigger</th>
-              <th className="text-left px-4">Condition</th>
-              <th className="text-left px-4">Action</th>
-              <th className="text-left px-4">Last Triggered</th>
-              <th className="text-right px-6">Status</th>
+              <th className="text-left px-6 py-3">{t("Trigger")}</th>
+              <th className="text-left px-4">{t("Condition")}</th>
+              <th className="text-left px-4">{t("Action")}</th>
+              <th className="text-left px-4">{t("Last Triggered")}</th>
+              <th className="text-right px-6">{t("Status")}</th>
             </tr>
           </thead>
           <tbody>
-            {RULES.map((r, i) => (
+            {rules.map((r, i) => (
               <tr key={i} style={{ background: i % 2 ? "#F9FAFB" : "#fff", height: 48 }}>
                 <td className="px-6 font-medium">{r.trigger}</td>
                 <td className="px-4" style={{ color: "#6B7280" }}>{r.condition}</td>
                 <td className="px-4">{r.action}</td>
                 <td className="px-4" style={{ color: "#6B7280" }}>{r.last}</td>
-                <td className="px-6 flex justify-end items-center h-12"><Toggle on={r.on} /></td>
+                <td className="px-6 flex justify-end items-center h-12"><Toggle on={r.on} onClick={() => toggle(i)} /></td>
               </tr>
             ))}
           </tbody>

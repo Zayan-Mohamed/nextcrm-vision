@@ -17,20 +17,20 @@ const roleStyle = (r: string) =>
 
 function Settings() {
   const [tab, setTab] = useState<Tab>("Users & Roles");
-  const { lang, setLang } = useI18n();
+  const { lang, setLang, t } = useI18n();
 
   return (
     <Layout title="Settings">
       <div className="flex gap-1 mb-6 border-b" style={{ borderColor: "#E5E7EB" }}>
-        {TABS.map((t) => (
-          <button key={t} onClick={() => setTab(t)}
+        {TABS.map((tb) => (
+          <button key={tb} onClick={() => setTab(tb)}
             className="px-4 py-3 text-[14px] font-medium"
             style={{
-              color: tab === t ? "#6C47FF" : "#6B7280",
-              borderBottom: tab === t ? "2px solid #6C47FF" : "2px solid transparent",
+              color: tab === tb ? "#6C47FF" : "#6B7280",
+              borderBottom: tab === tb ? "2px solid #6C47FF" : "2px solid transparent",
               marginBottom: -1,
             }}>
-            {t}
+            {t(tb)}
           </button>
         ))}
       </div>
