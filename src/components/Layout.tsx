@@ -57,13 +57,17 @@ function Sidebar() {
             <Link
               key={item.to}
               to={item.to}
-              className="flex items-center gap-3 px-3 py-2.5 mb-1 text-[14px] rounded-lg transition-colors"
+              className={
+                "nc-navitem flex items-center gap-3 px-3 py-2.5 mb-1 text-[14px] rounded-lg" +
+                (active ? " is-active" : "")
+              }
               style={{
                 background: active ? "#6C47FF" : "transparent",
                 color: active ? "#fff" : "rgba(255,255,255,0.75)",
+                boxShadow: active ? "0 6px 16px rgba(108,71,255,0.35)" : "none",
               }}
             >
-              <Icon size={18} />
+              <Icon size={18} className="nc-navicon" />
               <span>{t(item.label)}</span>
             </Link>
           );
@@ -101,7 +105,7 @@ function TopBar() {
           <button
             key={l.code}
             onClick={() => setLang(l.code)}
-            className="px-3 py-1.5 rounded-md text-[12px] font-medium transition-colors"
+            className={"nc-seg nc-press px-3 py-1.5 rounded-md text-[12px] font-medium" + (lang === l.code ? " is-on" : "")}
             style={{
               background: lang === l.code ? "#6C47FF" : "transparent",
               color: lang === l.code ? "#fff" : "#6B7280",
@@ -111,27 +115,35 @@ function TopBar() {
           </button>
         ))}
       </div>
-      <button className="relative" style={{ color: "#6B7280" }}>
+      <button
+        className="relative nc-press w-9 h-9 rounded-lg flex items-center justify-center hover:bg-[#F7F8FC]"
+        style={{ color: "#6B7280" }}
+        aria-label="Notifications"
+      >
         <Bell size={20} />
         <span
-          className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
-          style={{ background: "#F05A5A" }}
+          className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
+          style={{ background: "#F05A5A", boxShadow: "0 0 0 3px #fff" }}
         />
       </button>
-      <Avatar name="Amara Perera" />
+      <div className="nc-lift rounded-full">
+        <Avatar name="Amara Perera" />
+      </div>
     </header>
   );
 }
 
 export function Layout({ children, title }: { children: ReactNode; title: string }) {
   const { t } = useI18n();
+  const { pathname } = useLocation();
   return (
     <div className="flex min-w-[1280px]" style={{ background: "#F7F8FC", color: "#1A1A2E", fontFamily: "Inter, sans-serif" }}>
       <Sidebar />
       <div className="flex-1 flex flex-col min-h-screen">
         <TopBar />
-        <main className="flex-1 p-8">
-          <h1 className="text-[24px] font-semibold mb-6">{t(title)}</h1>
+        {/* Keyed by route so the content replays its enter animation on every navigation */}
+        <main key={pathname} className="nc-page flex-1 p-8">
+          <h1 className="text-[24px] font-semibold mb-6 nc-slide-in">{t(title)}</h1>
           {children}
         </main>
       </div>
@@ -140,10 +152,22 @@ export function Layout({ children, title }: { children: ReactNode; title: string
 }
 
 // Reusable primitives -----------------------------------------------------
-export function Card({ children, className = "", style }: { children: ReactNode; className?: string; style?: React.CSSProperties }) {
+export function Card({
+  children,
+  className = "",
+  style,
+  hover = false,
+  ...rest
+}: {
+  children: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  hover?: boolean;
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={"rounded-xl " + className}
+      {...rest}
+      className={"rounded-xl nc-card-hover " + (hover ? "nc-lift cursor-pointer " : "") + className}
       style={{ background: "#fff", boxShadow: "0 1px 4px rgba(0,0,0,0.08)", padding: 24, ...style }}
     >
       {children}
@@ -164,22 +188,28 @@ export function Badge({ children, bg = "#EEE9FF", color = "#6C47FF" }: { childre
   );
 }
 
-export function ButtonPrimary({ children, ...rest }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+export function ButtonPrimary({ children, className = "", ...rest }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...rest}
-      className="inline-flex items-center gap-2 text-[14px] font-medium"
-      style={{ background: "#6C47FF", color: "#fff", borderRadius: 8, padding: "10px 20px" }}
+      className={"nc-press inline-flex items-center gap-2 text-[14px] font-medium hover:-translate-y-0.5 " + className}
+      style={{
+        background: "#6C47FF",
+        color: "#fff",
+        borderRadius: 8,
+        padding: "10px 20px",
+        boxShadow: "0 4px 14px rgba(108,71,255,0.30)",
+      }}
     >
       {children}
     </button>
   );
 }
-export function ButtonSecondary({ children, ...rest }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+export function ButtonSecondary({ children, className = "", ...rest }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...rest}
-      className="inline-flex items-center gap-2 text-[14px] font-medium"
+      className={"nc-press inline-flex items-center gap-2 text-[14px] font-medium hover:bg-[#F7F8FC] hover:-translate-y-0.5 " + className}
       style={{ background: "#fff", color: "#1A1A2E", borderRadius: 8, padding: "10px 20px", border: "1px solid #E5E7EB" }}
     >
       {children}

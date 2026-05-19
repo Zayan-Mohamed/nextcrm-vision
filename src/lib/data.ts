@@ -120,7 +120,7 @@ export const TRANSCRIPT = [
   { who: "Agent",    text: "Got it. Our growth tier covers up to 50 seats and includes Vocalytics." },
   { who: "Customer", text: "What's the cost in LKR? And do you do annual billing?" },
   { who: "Agent",    text: "Annual works out to LKR 9,500 per seat per month. 15% discount included." },
-  { who: "Customer", text: "Reasonable. Send me a proposal — we'll review this week." },
+  { who: "Customer", text: "Reasonable. Send me a proposal, we'll review this week." },
   { who: "Agent",    text: "I'll have it in your inbox within the hour. Thank you, Pradeep." },
 ];
 
@@ -201,10 +201,10 @@ export const TASKS = {
 
 // Mail Agent --------------------------------------------------------------
 export const CAMPAIGNS = [
-  { name: "Q2 Outbound — SMB",       status: "Active", leads: 240, open: "45%", click: "14%", created: "2026-04-22" },
+  { name: "Q2 Outbound · SMB",       status: "Active", leads: 240, open: "45%", click: "14%", created: "2026-04-22" },
   { name: "Demo Follow-up Sequence", status: "Active", leads: 132, open: "52%", click: "21%", created: "2026-04-10" },
   { name: "Re-engagement",           status: "Paused", leads: 88,  open: "31%", click:  "8%", created: "2026-03-28" },
-  { name: "Spring Promotion",        status: "Draft",  leads: 0,   open:  "—",  click:  "—",  created: "2026-05-15" },
+  { name: "Spring Promotion",        status: "Draft",  leads: 0,   open:  "–",  click:  "–",  created: "2026-05-15" },
   { name: "Enterprise ABM",          status: "Active", leads: 42,  open: "61%", click: "27%", created: "2026-02-14" },
 ];
 
@@ -227,10 +227,10 @@ export const UNSUBSCRIBED = [
 export const RULES = [
   { trigger: "Lead created",          condition: "Source = Facebook", action: "Assign to Amara",   on: true,  last: "2h ago" },
   { trigger: "Call ended",            condition: "Duration > 5m",     action: "Create follow-up",  on: true,  last: "1h ago" },
-  { trigger: "Email opened ≥ 3x",     condition: "—",                  action: "Tag as Hot",        on: true,  last: "30m ago" },
+  { trigger: "Email opened ≥ 3x",     condition: "–",                  action: "Tag as Hot",        on: true,  last: "30m ago" },
   { trigger: "Deal stalled 7 days",   condition: "Stage = Proposal",  action: "Notify manager",    on: false, last: "Yesterday" },
   { trigger: "Form submitted",        condition: "Page = /pricing",   action: "Send pricing PDF",  on: true,  last: "10m ago" },
-  { trigger: "Unsubscribe",           condition: "—",                  action: "Mark Do Not Email", on: true,  last: "3h ago" },
+  { trigger: "Unsubscribe",           condition: "–",                  action: "Mark Do Not Email", on: true,  last: "3h ago" },
 ];
 
 // Settings ----------------------------------------------------------------

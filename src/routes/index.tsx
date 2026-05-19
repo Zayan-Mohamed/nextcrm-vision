@@ -12,9 +12,9 @@ function Dashboard() {
   return (
     <Layout title="Dashboard">
       {/* KPI Row */}
-      <div className="grid grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-6 gap-4 mb-6 nc-stagger">
         {KPIS.map((k) => (
-          <Card key={k.label} style={{ padding: 20 }}>
+          <Card key={k.label} hover style={{ padding: 20 }}>
             <Label>{k.label}</Label>
             <div className="text-[20px] font-semibold mt-2">{k.value}</div>
             <div className="text-[12px] mt-1" style={{ color: "#00C48C" }}>{k.delta}</div>
@@ -25,7 +25,7 @@ function Dashboard() {
       <div className="grid grid-cols-3 gap-6 mb-6">
         <Card className="col-span-2">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[16px] font-semibold">Leads — Last 30 days</h2>
+            <h2 className="text-[16px] font-semibold">Leads · Last 30 days</h2>
             <Label>Daily</Label>
           </div>
           <div style={{ height: 260 }}>

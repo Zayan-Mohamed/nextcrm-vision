@@ -24,10 +24,9 @@ function Settings() {
       <div className="flex gap-1 mb-6 border-b" style={{ borderColor: "#E5E7EB" }}>
         {TABS.map((tb) => (
           <button key={tb} onClick={() => setTab(tb)}
-            className="px-4 py-3 text-[14px] font-medium"
+            className={"nc-tab px-4 py-3 text-[14px] font-medium" + (tab === tb ? " is-active" : "")}
             style={{
               color: tab === tb ? "#6C47FF" : "#6B7280",
-              borderBottom: tab === tb ? "2px solid #6C47FF" : "2px solid transparent",
               marginBottom: -1,
             }}>
             {t(tb)}
@@ -35,11 +34,13 @@ function Settings() {
         ))}
       </div>
 
-      {tab === "Users & Roles" && <UsersTab />}
-      {tab === "Integrations" && <IntegrationsTab />}
-      {tab === "Language" && <LanguageTab lang={lang} setLang={setLang} />}
-      {tab === "General" && <Card><p className="text-[14px]" style={{ color: "#6B7280" }}>General settings panel.</p></Card>}
-      {tab === "Notifications" && <Card><p className="text-[14px]" style={{ color: "#6B7280" }}>Notification preferences.</p></Card>}
+      <div key={tab} className="nc-section">
+        {tab === "Users & Roles" && <UsersTab />}
+        {tab === "Integrations" && <IntegrationsTab />}
+        {tab === "Language" && <LanguageTab lang={lang} setLang={setLang} />}
+        {tab === "General" && <Card><p className="text-[14px]" style={{ color: "#6B7280" }}>General settings panel.</p></Card>}
+        {tab === "Notifications" && <Card><p className="text-[14px]" style={{ color: "#6B7280" }}>Notification preferences.</p></Card>}
+      </div>
 
       {/* Integrations always visible as a second section per spec */}
       {tab !== "Integrations" && (
@@ -94,9 +95,9 @@ function UsersTab() {
 
 function IntegrationsTab() {
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-4 nc-stagger">
       {INTEGRATIONS.map((it) => (
-        <Card key={it.name}>
+        <Card key={it.name} hover>
           <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4 font-bold"
             style={{ background: "#EEE9FF", color: "#6C47FF" }}>
             {it.name[0]}
@@ -130,7 +131,7 @@ function LanguageTab({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void
       </p>
       <div className="space-y-3">
         {opts.map((o) => (
-          <label key={o.code} className="flex items-center gap-4 p-4 rounded-lg cursor-pointer"
+          <label key={o.code} className="nc-card-hover nc-press flex items-center gap-4 p-4 rounded-lg cursor-pointer"
             style={{ border: "1px solid " + (lang === o.code ? "#6C47FF" : "#E5E7EB"), background: lang === o.code ? "#EEE9FF" : "#fff" }}>
             <input type="radio" checked={lang === o.code} onChange={() => setLang(o.code)} />
             <span className="text-[22px]">{o.flag}</span>

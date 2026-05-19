@@ -56,7 +56,7 @@ function MailMind() {
             <div className="rounded-lg" style={{ border: "1px solid #E5E7EB" }}>
               <textarea
                 rows={12}
-                defaultValue={"Hi {{first_name}},\n\nNoticed " + "{{company}}" + " is growing fast in apparel exports — congrats. We help teams like yours close 30% more deals using AI-powered call analytics.\n\nWorth a quick 15-min chat next week?\n\n— Amara"}
+                defaultValue={"Hi {{first_name}},\n\nNoticed " + "{{company}}" + " is growing fast in apparel exports, congrats. We help teams like yours close 30% more deals using AI-powered call analytics.\n\nWorth a quick 15-min chat next week?\n\nBest,\nAmara"}
                 className="w-full p-3 text-[14px] rounded-lg resize-none focus:outline-none"
               />
               <div className="flex items-center justify-between p-2 border-t" style={{ borderColor: "#E5E7EB" }}>
@@ -77,18 +77,18 @@ function MailMind() {
 
       <div className="flex gap-2 mb-4">
         <button onClick={() => setTab("campaigns")}
-          className="px-4 py-2 text-[14px] font-medium rounded-lg"
+          className={"nc-seg nc-press px-4 py-2 text-[14px] font-medium rounded-lg" + (tab === "campaigns" ? " is-on" : "")}
           style={{ background: tab === "campaigns" ? "#6C47FF" : "#fff", color: tab === "campaigns" ? "#fff" : "#1A1A2E", border: "1px solid #E5E7EB" }}>
           Campaign Results
         </button>
         <button onClick={() => setTab("unsub")}
-          className="px-4 py-2 text-[14px] font-medium rounded-lg"
+          className={"nc-seg nc-press px-4 py-2 text-[14px] font-medium rounded-lg" + (tab === "unsub" ? " is-on" : "")}
           style={{ background: tab === "unsub" ? "#6C47FF" : "#fff", color: tab === "unsub" ? "#fff" : "#1A1A2E", border: "1px solid #E5E7EB" }}>
           Unsubscriptions
         </button>
       </div>
 
-      <Card style={{ padding: 0 }}>
+      <Card key={tab} className="nc-section" style={{ padding: 0 }}>
         {tab === "campaigns" ? (
           <table className="w-full text-[14px]">
             <thead>

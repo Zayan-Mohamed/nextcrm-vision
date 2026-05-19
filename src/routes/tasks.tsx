@@ -65,7 +65,7 @@ function TaskBoard() {
               <span className="font-semibold text-[14px]">{t(col)}</span>
               <span className="text-[12px]" style={{ color: "#6B7280" }}>{board[col].length}</span>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 nc-stagger">
               {board[col].map((task) => {
                 const ps = prioStyle(task.prio);
                 return (
@@ -74,7 +74,7 @@ function TaskBoard() {
                     draggable
                     onDragStart={() => setDragging({ from: col, title: task.title })}
                     onDragEnd={() => setDragging(null)}
-                    className="bg-white rounded-lg p-3 cursor-grab active:cursor-grabbing"
+                    className="nc-lift bg-white rounded-lg p-3 cursor-grab active:cursor-grabbing"
                     style={{
                       boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
                       opacity: dragging?.title === task.title ? 0.4 : 1,

@@ -49,7 +49,7 @@ function MailAgent() {
       <Card>
         <div className="flex items-center gap-2 mb-6">
           <Mail size={18} style={{ color: "#6C47FF" }} />
-          <h2 className="text-[16px] font-semibold">Q2 Outbound — SMB</h2>
+          <h2 className="text-[16px] font-semibold">Q2 Outbound · SMB</h2>
           <Badge bg="#DCFCE7" color="#15803D">Active</Badge>
         </div>
 
@@ -72,7 +72,7 @@ function MailAgent() {
           {[
             { day: "Day 1", subject: "Quick question about your sales workflow", status: "Sent · 240" },
             { day: "Day 3", subject: "How {{company}} can save 8 hrs/week", status: "Sent · 198" },
-            { day: "Day 7", subject: "Last thought — worth a 15-min chat?", status: "Sending · 92" },
+            { day: "Day 7", subject: "Last thought: worth a 15-min chat?", status: "Sending · 92" },
           ].map((e, i) => (
             <div key={i} className="flex items-center gap-4 rounded-lg p-4" style={{ border: "1px solid #E5E7EB" }}>
               <div className="w-12 h-12 rounded-lg flex items-center justify-center font-semibold text-[13px]"

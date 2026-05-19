@@ -58,14 +58,14 @@ function Pipeline() {
               <div className="text-[12px] mb-3 px-1" style={{ color: "#6B7280" }}>
                 LKR {(total / 1000).toFixed(0)}K total
               </div>
-              <div className="space-y-2 flex-1">
+              <div className="space-y-2 flex-1 nc-stagger">
                 {cards.map((c) => (
                   <div
                     key={c.id}
                     draggable
                     onDragStart={() => setDragging({ from: stage, id: c.id })}
                     onDragEnd={() => setDragging(null)}
-                    className="bg-white rounded-lg p-3 cursor-grab active:cursor-grabbing"
+                    className="nc-lift bg-white rounded-lg p-3 cursor-grab active:cursor-grabbing"
                     style={{
                       boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
                       opacity: dragging?.id === c.id ? 0.4 : 1,

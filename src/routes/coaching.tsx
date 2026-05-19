@@ -48,7 +48,7 @@ function Coaching() {
           <Avatar name="Pradeep Silva" />
           <div>
             <div className="font-semibold text-[16px]">Pradeep Silva</div>
-            <Label>Coaching Snapshot — May 2026</Label>
+            <Label>Coaching Snapshot · May 2026</Label>
           </div>
         </div>
 

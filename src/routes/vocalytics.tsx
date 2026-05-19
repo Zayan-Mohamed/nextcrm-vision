@@ -54,13 +54,13 @@ const TRANSCRIPT: TLine[] = [
   { who: "AR", speaker: "Alex (Sales Rep)", ts: "00:08", text: "Hi Sarah, thanks for jumping on. How's the engineering org structured these days at Acme?" },
   { who: "SJ", speaker: "Sarah (Lead)",     ts: "00:22", text: "We're about 80 engineers across 6 platform squads. We've been growing fast." },
   { who: "AR", speaker: "Alex (Sales Rep)", ts: "00:46", text: "Got it. What's the biggest pain on the integration side right now?" },
-  { who: "SJ", speaker: "Sarah (Lead)",     ts: "01:05", text: "Honestly, the rate limits on our legacy API are killing us — we're hitting throttle 50+ times a day.", painPoint: true },
+  { who: "SJ", speaker: "Sarah (Lead)",     ts: "01:05", text: "Honestly, the rate limits on our legacy API are killing us. We're hitting throttle 50+ times a day.", painPoint: true },
   { who: "AR", speaker: "Alex (Sales Rep)", ts: "01:34", text: "Yikes. Are you doing any kind of edge caching today, or all direct calls?" },
-  { who: "SJ", speaker: "Sarah (Lead)",     ts: "01:52", text: "Direct, mostly. We tried caching but the deployment pipeline takes 40 minutes — iteration is painful.", painPoint: true },
+  { who: "SJ", speaker: "Sarah (Lead)",     ts: "01:52", text: "Direct, mostly. We tried caching but the deployment pipeline takes 40 minutes, so iteration is painful.", painPoint: true },
   { who: "AR", speaker: "Alex (Sales Rep)", ts: "02:30", text: "Our deploy story is built around blue/green with zero-downtime swaps, typically under 4 minutes for a service of your size." },
   { who: "SJ", speaker: "Sarah (Lead)",     ts: "03:01", text: "That would be transformative. What's the rough pricing for ~80 seats on the platform tier?" },
   { who: "AR", speaker: "Alex (Sales Rep)", ts: "03:24", text: "Enterprise tier lands around $42 per seat per month annually, plus included Vocalytics and Coaching AI." },
-  { who: "SJ", speaker: "Sarah (Lead)",     ts: "03:58", text: "Reasonable. But I'd need budget approval — our Q3 cycle just closed and Q4 sign-off is in August.", painPoint: true },
+  { who: "SJ", speaker: "Sarah (Lead)",     ts: "03:58", text: "Reasonable. But I'd need budget approval. Our Q3 cycle just closed and Q4 sign-off is in August.", painPoint: true },
   { who: "AR", speaker: "Alex (Sales Rep)", ts: "04:40", text: "Totally fair. I can send a technical brief and we can do a CTO intro call to align on the deployment story before then." },
   { who: "SJ", speaker: "Sarah (Lead)",     ts: "05:12", text: "Perfect. Send the docs and let's get my CTO Mark on a call by end of month." },
 ];
@@ -149,9 +149,9 @@ function StatsRow() {
     { label: "AI Analysed",  value: "44",      delta: "94%" },
   ];
   return (
-    <div className="grid grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-4 gap-4 mb-6 nc-stagger">
       {stats.map((s) => (
-        <Card key={s.label} style={{ padding: 20 }}>
+        <Card key={s.label} hover style={{ padding: 20 }}>
           <Label>{s.label}</Label>
           <div className="flex items-end justify-between mt-2">
             <div className="text-[22px] font-semibold">{s.value}</div>
@@ -310,7 +310,7 @@ function AudioPlayer() {
             <button
               key={s}
               onClick={() => setSpeed(s)}
-              className="px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors"
+              className={"nc-seg nc-press px-2.5 py-1 rounded-md text-[12px] font-medium" + (speed === s ? " is-on" : "")}
               style={{
                 background: speed === s ? "#6C47FF" : "transparent",
                 color:      speed === s ? "#fff"    : "#6B7280",
@@ -551,7 +551,7 @@ function NextSteps() {
     <Card>
       <div className="flex items-center gap-2 mb-1">
         <Bot size={16} style={{ color: "#6C47FF" }} />
-        <h3 className="text-[15px] font-semibold">Assistance AI — Next Steps</h3>
+        <h3 className="text-[15px] font-semibold">Assistance AI · Next Steps</h3>
       </div>
       <p className="text-[12px] mb-4" style={{ color: "#6B7280" }}>
         3 tasks auto-generated from this call
