@@ -12,6 +12,7 @@ const statusColor = (s: string) =>
                         { bg: "#FEF9C3", color: "#854D0E" };
 
 function Vocalytics() {
+  const { t } = useI18n();
   const stats = [
     { label: "Total Calls", value: "47" },
     { label: "Avg Duration", value: "6m 12s" },
@@ -31,17 +32,17 @@ function Vocalytics() {
 
       <Card style={{ padding: 0 }} className="mb-6">
         <div className="px-6 py-4 border-b" style={{ borderColor: "#E5E7EB" }}>
-          <h2 className="text-[16px] font-semibold">Call Log</h2>
+          <h2 className="text-[16px] font-semibold">{t("Call Log")}</h2>
         </div>
         <table className="w-full text-[14px]">
           <thead>
             <tr style={{ color: "#6B7280", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              <th className="text-left px-6 py-3">Caller</th>
-              <th className="text-left px-4">Phone</th>
-              <th className="text-left px-4">Duration</th>
-              <th className="text-left px-4">When</th>
-              <th className="text-left px-4">Status</th>
-              <th className="text-right px-6">Actions</th>
+              <th className="text-left px-6 py-3">{t("Caller")}</th>
+              <th className="text-left px-4">{t("Phone")}</th>
+              <th className="text-left px-4">{t("Duration")}</th>
+              <th className="text-left px-4">{t("When")}</th>
+              <th className="text-left px-4">{t("Status")}</th>
+              <th className="text-right px-6">{t("Actions")}</th>
             </tr>
           </thead>
           <tbody>
